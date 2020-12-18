@@ -53,7 +53,8 @@ void upload() {
   Broker b = Broker(broker_url);
   b.addProperty("voltage", String(voltage));
   b.addProperty("refresh_rate", String(refresh_rate));
-  b.addProperty("temperature", String(temperature));
-  b.addProperty("humidity", String(humidity));
+  // report only 1 decimal place - saves space in HA dashboards
+  b.addProperty("temperature", String(temperature, 1));
+  b.addProperty("humidity", String(humidity, 1));
   b.upload();
 }
